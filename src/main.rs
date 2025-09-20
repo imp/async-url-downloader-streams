@@ -24,7 +24,7 @@ fn load_urls_from_file(
 async fn load_url(url: String) -> anyhow::Result<()> {
     reqwest::get(&url)
         .await?
-        .text()
+        .bytes()
         .await
         .map(|body| println!("Downloaded {} bytes from {url}", body.len()))?;
     Ok(())
