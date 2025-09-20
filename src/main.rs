@@ -41,8 +41,7 @@ async fn load_urls_concurrent(
         .try_filter(|line| future::ready(!line.is_empty() && !line.starts_with('#')))
         .try_for_each_concurrent(limit, load_url)
         .await
-        .map(|_| println!("Loading took {:?}", start.elapsed()))?;
-    Ok(())
+        .map(|_| println!("Loading took {:?}", start.elapsed()))
 }
 
 #[tokio::main]
